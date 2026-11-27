@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://unseenages.github.io/sitemap.xml

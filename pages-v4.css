@@ -1,0 +1,89 @@
+/* Unseen Ages — subpages v4: the approved homepage v4 system
+   (the close Fernhill mirror) rolled out to articles + simple pages.
+   Same slim bar, same serif type scale, hairline rules, small-caps
+   labels, the oversized ✦ footer, staggered scroll reveals and the
+   homepage's hover language. Loaded after style.css by every page
+   except index.html (which loads home-v4.css instead).
+   All hidden reveal states live under html.js only, so no-JS keeps
+   everything visible; reduced motion shows final states. */
+
+.more{font-weight:600;letter-spacing:.06em;color:var(--accent)}
+
+/* ---------- reveal system (same contract as home-v4) ---------- */
+html.js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.6,.2,1)}
+html.js .rv.in{opacity:1;transform:none}
+html.js .rv-group .rv-i{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.6,.2,1);transition-delay:calc(var(--i,0)*85ms)}
+html.js .rv-group.in .rv-i{opacity:1;transform:none}
+html.js .rv-group.done .rv-i{transition-delay:0s}
+
+/* ---------- slim top bar (same as homepage v4) ---------- */
+header.site .wrap{min-height:54px}
+.brand{font-size:25px}
+
+/* ---------- buttons (same as homepage v4) ---------- */
+.btn-fill{background:var(--accent);color:#f8f2e4;font-weight:600;font-size:15px;letter-spacing:.04em;padding:13px 26px;border-radius:40px;border:1px solid var(--accent);transition:background .25s,transform .25s;display:inline-block}
+.btn-fill:hover{background:var(--accent-hi);text-decoration:none;transform:translateY(-2px)}
+.btn-line{color:var(--accent);font-weight:600;font-size:15px;letter-spacing:.04em;padding:13px 26px;border-radius:40px;border:1px solid var(--line);background:var(--panel);transition:border-color .25s,transform .25s;display:inline-block}
+.btn-line:hover{border-color:var(--accent);text-decoration:none;transform:translateY(-2px)}
+
+/* ---------- footer: oversized ✦ index (same as homepage v4) ---------- */
+footer.site .wrap{display:block}
+.foot-index{text-align:center;font-family:var(--serif);font-weight:600;font-size:clamp(24px,3.4vw,37px);line-height:1.7;padding:10px 0 28px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.foot-index a{color:var(--text);transition:color .25s}
+.foot-index a:hover{color:var(--accent);text-decoration:none}
+.fi-star{color:var(--accent);font-size:.6em;margin:0 .5em;vertical-align:.22em}
+.foot-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+/* ---------- article pages ---------- */
+.article{padding:64px 20px 24px}
+.article h1{font-size:clamp(46px,6.8vw,70px);line-height:1.03;margin:.3em 0 .16em}
+.dek{font-size:23.5px;line-height:1.5}
+.meta{border-bottom:1px solid var(--line);padding-bottom:20px;margin:20px 0 34px}
+.article figure{margin:36px 0}
+.article figure .art{border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 40px rgba(74,54,16,.14)}
+.article figcaption{border-top:1px solid var(--line-soft);padding-top:10px;margin-top:12px;font-size:13.5px}
+
+/* numbered body sections — the homepage's small-caps label language
+   above each serif head, in CSS only; the heading text is untouched */
+.article{counter-reset:sech}
+.article h2{font-size:clamp(30px,4.2vw,38px);line-height:1.12;margin-top:2em}
+.article h2.sec-h{counter-increment:sech}
+.article h2.sec-h::before{content:counter(sech,decimal-leading-zero);display:block;font-family:var(--sans);font-style:normal;font-weight:600;font-size:12.5px;letter-spacing:.22em;line-height:1;color:var(--accent);margin-bottom:9px}
+
+/* quick facts: a calm panel in the homepage's info-grid language —
+   small-caps label, hairline rows instead of bullets */
+.facts{border:1px solid var(--line);border-left:1px solid var(--line);border-radius:18px;padding:28px 30px 22px;margin:36px 0;box-shadow:0 1px 0 var(--line-soft)}
+.facts h3{font-family:var(--sans);font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+.facts ul{list-style:none;margin:0;padding:0}
+.facts li{margin:0;padding:9px 0;border-bottom:1px solid var(--line-soft)}
+.facts li:last-child{border-bottom:0;padding-bottom:2px}
+
+/* reel placeholder: the homepage's soft card radius */
+.reel{border-radius:16px;padding:26px;margin:36px 0}
+
+/* sources + image note */
+.sources li{margin-bottom:8px}
+.note{margin-top:18px}
+
+/* related stories: cards in the homepage trio's hover language */
+.related{gap:14px;margin-top:6px}
+.related a{border-radius:18px;padding:18px 22px;box-shadow:0 1px 0 var(--line-soft);transition:border-color .3s,transform .3s cubic-bezier(.2,.6,.2,1),box-shadow .3s}
+.related a:hover{border-color:#b9a888;transform:translateY(-3px);box-shadow:0 12px 26px rgba(74,54,16,.10)}
+.related .tag{margin-bottom:6px}
+
+/* ---------- simple pages (about / privacy / contact / 404) ---------- */
+.page{padding:64px 20px 24px}
+.page h1{font-size:clamp(44px,6.4vw,66px);line-height:1.04;margin:.24em 0 .3em}
+.page h2{font-size:clamp(27px,3.6vw,32px);margin-top:1.9em;padding-top:.55em;border-top:1px solid var(--line-soft)}
+.page .meta{border-bottom:1px solid var(--line);padding-bottom:16px;margin:14px 0 26px}
+
+@media(max-width:560px){
+  .article{padding-top:44px}
+  .page{padding-top:44px}
+  .dek{font-size:21px}
+  .facts{padding:22px 20px 16px}
+  .foot-row{flex-direction:column;gap:6px}
+}
+@media (prefers-reduced-motion: reduce){
+  html.js .rv,html.js .rv-group .rv-i{opacity:1!important;transform:none!important}
+}
