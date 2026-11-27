@@ -57,11 +57,19 @@
     var cur = document.documentElement.lang || "en";
     sel.value = cur;
     sel.addEventListener("change", function () {
-      var prefixes = { en: "", es: "es/", pt: "pt/", hi: "hi/", ar: "ar/", bn: "bn/" };
       var p = window.location.pathname.replace(/^\//, "");
-      if (cur !== "en" && p.indexOf(cur + "/") === 0) p = p.slice(cur.length + 1);
       if (p === "" || p.charAt(p.length - 1) === "/") p += "index.html";
-      window.location.href = "/" + (prefixes[sel.value] || "") + p;
+      var parts = p.split("/").filter(function (s) { return s !== ""; });
+      /* page part = the file name, plus a leading "articles" segment if present */
+      var page = [];
+      if (parts.length) page.unshift(parts.pop());
+      if (parts.length && parts[parts.length - 1] === "articles") page.unshift(parts.pop());
+      /* drop the current language segment; what remains is the site base
+         ("" at a domain root, or e.g. "unseen-ages-preview" on a project page) */
+      if (cur !== "en" && parts.length && parts[parts.length - 1] === cur) parts.pop();
+      var base = parts.length ? "/" + parts.join("/") + "/" : "/";
+      var dest = sel.value === "en" ? "" : sel.value + "/";
+      window.location.href = base + dest + page.join("/");
     });
   }
 })();
