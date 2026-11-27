@@ -69,7 +69,9 @@
       if (cur !== "en" && parts.length && parts[parts.length - 1] === cur) parts.pop();
       var base = parts.length ? "/" + parts.join("/") + "/" : "/";
       var dest = sel.value === "en" ? "" : sel.value + "/";
-      window.location.href = base + dest + page.join("/");
+      var tail = page.join("/");
+      if (tail === "index.html") tail = ""; /* homepage links stay clean: no /index.html */
+      window.location.href = base + dest + tail;
     });
   }
 })();
